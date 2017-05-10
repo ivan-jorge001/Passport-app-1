@@ -1,7 +1,8 @@
 <h1><%= title %></h1>
-
-<% if (typeof user !== 'undefined') { %>
-  <p> Hello, <%= user.name %>. </p>
-<% } %>
-
+<%if( passportSuccess.length > 0){%>
+<div class = "success"><%= passportSuccess%></div>
+<%};%>
 <p>Welcome to <%= title %></p>
+<%if(typeof user !=="undefined"){%>
+  <p>hello,<%=user.name%> </p>
+<%};%>

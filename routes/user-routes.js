@@ -1,21 +1,19 @@
-const expres = require('express');
-const ensure = require('connect-ensure-login');
-
-const routerThingy = express.Router();
-
-ensure.ensureLoggedIn();
-
-
-//routerThingy.get('/profile/edit', (req, res, next) => {
-
-  routerThingy.get(
-    '/profile/edit',
-
-    //           redirects to /login if you are NOT logged in
-    ensure.ensureLoggedIn('/login'),
-    (req, res, next) => {
-  res.render('user/edit-profile-view.ejs');
+const express = require('express');
+const userRouter = express.Router();
+const ensure= require('connect-ensure-login');
+//
+// ensure.ensureLoggedIn();
+//
+// ensure.ensureLoggedOut();
+// ensure.ensureNotLoggedIn();
+//                                 makes sure to redirect to /login if you are not log in
+userRouter.get('/profile/edit',ensure.ensureLoggedIn('/login'),(req,res,next)=>{
+res.render('user/edit-profile-view.ejs');
 });
 
 
-module.exports = routerThingy;
+// if (!req.user) {
+//   res.redirect('/login');
+//   return;
+// }
+module.exports = userRouter;

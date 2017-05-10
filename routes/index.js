@@ -3,23 +3,22 @@ const router  = express.Router();
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  console.log('HOME ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
 
-  console.log('SESSION (from express-session middleware)');
-  console.log(req.session);
-
-  console.log('\n');
-  console.log('USER (from Passport middleware)');
-  console.log(req.user);
-
-  // Render a completely different view for logged in users
-  // if (req.user) {
-  //   res.render('logged-in-home.ejs');
-  // } else {
-  //   res.render('index');
-  // }
-
-  res.render('index');
+console.log('home==============================');
+console.log('seesion (from express-session)',req.session);
+console.log('user (user passport)',req.user);
+//
+// if (req.user) {
+//   res.render('logged-in-home.ejs');
+// }else{
+//   res.render('not loge in user');
+// }
+console.log();
+  res.render('index',{
+    passportSuccess:req.flash('success')
+    // ========================|==================
+//                             default success key fro  passport
+  });
 });
 
 module.exports = router;
